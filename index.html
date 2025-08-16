@@ -1,857 +1,4 @@
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Slide</label>
-                                    <div class="effect-knob" data-effect="slide" onclick="adjustLiveEffect('slide')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Drive</label>
-                                    <div class="effect-knob" data-effect="drive" onclick="adjustLiveEffect('drive')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Reverb</label>
-                                    <div class="effect-knob" data-effect="reverb" onclick="adjustLiveEffect('reverb')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Delay</label>
-                                    <div class="effect-knob" data-effect="delay" onclick="adjustLiveEffect('delay')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Wah</label>
-                                    <div class="effect-knob" data-effect="wah" onclick="adjustLiveEffect('wah')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Chorus</label>
-                                    <div class="effect-knob" data-effect="chorus" onclick="adjustLiveEffect('chorus')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <button class="live-btn" onclick="killLiveEffects()">🔇 Kill Effects</button>
-                                <button class="live-btn" onclick="randomLiveEffects()">🎲 Random</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(255, 107, 157, 0.15); border: 2px solid #ff6b9d; border-radius: 15px; padding: 20px;">
-                        <h2 style="color: #ff6b9d; margin-bottom: 15px; text-align: center;">🥁 Rhythm & Controls</h2>
-                        <div style="display: flex; flex-direction: column; gap: 15px;">
-                            <div>
-                                <label>BPM:</label>
-                                <input type="number" id="liveBPM" value="120" min="60" max="180" style="width: 100%; background: rgba(44, 44, 78, 0.8); color: white; border: 2px solid #ff6b9d; padding: 8px; border-radius: 8px;">
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
-                                <div class="beat-pad active" data-pattern="2_eighths" onclick="selectLiveRhythm(this, '2_eighths')" style="aspect-ratio: 1; background: rgba(255, 107, 157, 0.6); border: 2px solid #ff6b9d; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s ease;">1&2</div>
-                                <div class="beat-pad" data-pattern="3_triplet" onclick="selectLiveRhythm(this, '3_triplet')" style="aspect-ratio: 1; background: rgba(255, 107, 157, 0.3); border: 2px solid #ff6b9d; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s ease;">Trip</div>
-                                <div class="beat-pad" data-pattern="syncopated" onclick="selectLiveRhythm(this, 'syncopated')" style="aspect-ratio: 1; background: rgba(255, 107, 157, 0.3); border: 2px solid #ff6b9d; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s ease;">Sync</div>
-                                <div class="beat-pad" data-pattern="boogie" onclick="selectLiveRhythm(this, 'boogie')" style="aspect-ratio: 1; background: rgba(255, 107, 157, 0.3); border: 2px solid #ff6b9d; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold; transition: all 0.2s ease;">Boogie</div>
-                            </div>
-                            
-                            <button class="live-btn" onclick="playLiveRhythm()">Play Rhythm</button>
-                            
-                            <div style="margin-top: 10px;">
-                                <button class="live-btn" onclick="saveLiveSession()">💾 Save</button>
-                                <button class="live-btn" onclick="exportLiveTrack()" style="margin-top: 5px;">📤 Export</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <style>
-                    .live-btn {
-                        background: linear-gradient(45deg, #ff6b9d, #9b59b6);
-                        border: none;
-                        padding: 12px 20px;
-                        border-radius: 25px;
-                        color: white;
-                        cursor: pointer;
-                        font-weight: bold;
-                        transition: all 0.3s ease;
-                        text-transform: uppercase;
-                        letter-spacing: 1px;
-                        width: 100%;
-                        margin-bottom: 5px;
-                    }
-                    .live-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4); }
-                    .beat-pad:hover { background: rgba(255, 107, 157, 0.6) !important; transform: scale(1.05); }
-                    .beat-pad.active { background: #ff6b9d !important; box-shadow: 0 0 20px rgba(255, 107, 157, 0.8); }
-                </style>
-            `;
-            
-            updateStatus('Live Console loaded - Perfect for stage performance!');
-        }
-
-        // Complete Studio Mode
-        async function loadCompleteMode(container) {
-            container.innerHTML = `
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #00ffff; border-radius: 15px; padding: 20px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="color: #00ffff; text-transform: uppercase;">🌍 World Music Genres</h3>
-                            <span style="font-size: 0.8em; padding: 5px 10px; border-radius: 10px; background: #00ff00; color: #000;">READY</span>
-                        </div>
-                        <select id="completeGenreSelect" onchange="changeCompleteGenre(this.value)" style="width: 100%; padding: 15px; background: #1a1a1a; border: 2px solid #00ffff; color: #fff; border-radius: 10px; font-family: inherit; font-size: 1em; margin-bottom: 20px;">
-                            <option value="standard">Standard</option>
-                            <option value="motown">Motown (Funk Brothers)</option>
-                            <option value="wreckingCrew">Wrecking Crew (LA Studio)</option>
-                            <option value="reggae">Reggae</option>
-                            <option value="psychedelic">Psychedelic</option>
-                            <option value="indian">Indian Classical</option>
-                            <option value="african">African Polyrhythms</option>
-                        </select>
-                        <div id="completeInstrumentGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                            <button class="instrument-pad" onclick="playCompleteInstrument(0, 'Kick')">Kick</button>
-                            <button class="instrument-pad" onclick="playCompleteInstrument(1, 'Snare')">Snare</button>
-                            <button class="instrument-pad" onclick="playCompleteInstrument(2, 'Hi-Hat')">Hi-Hat</button>
-                            <button class="instrument-pad" onclick="playCompleteInstrument(3, 'Crash')">Crash</button>
-                            <button class="instrument-pad" onclick="playCompleteInstrument(4, 'Bass')">Bass</button>
-                            <button class="instrument-pad" onclick="playCompleteInstrument(5, 'Guitar')">Guitar</button>
-                            <button class="instrument-pad" onclick="playCompleteInstrument(6, 'Keys')">Keys</button>
-                            <button class="instrument-pad" onclick="playCompleteInstrument(7, 'Vocals')">Vocals</button>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #ff6600; border-radius: 15px; padding: 20px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="color: #ff6600; text-transform: uppercase;">🔊 UAD Plugins Rack</h3>
-                            <span style="font-size: 0.8em; padding: 5px 10px; border-radius: 10px; background: #00ff00; color: #000;">READY</span>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
-                            <button class="complete-btn" onclick="loadCompleteUAD()">Load UAD Presets</button>
-                            <button class="complete-btn" onclick="resetCompleteUAD()">Reset Plugins</button>
-                        </div>
-                        <div id="completeUADRack" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                            <div style="background: linear-gradient(45deg, #333, #666); border: 2px solid #ff6600; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer;" onclick="toggleCompleteUAD('LA-2A')">
-                                <div style="font-weight: bold; font-size: 0.8em;">LA-2A</div>
-                                <div style="font-size: 0.7em; color: #ccc;">Leveler</div>
-                                <div style="font-size: 0.7em; color: #00ff00;">0%</div>
-                            </div>
-                            <div style="background: linear-gradient(45deg, #333, #666); border: 2px solid #ff6600; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer;" onclick="toggleCompleteUAD('1176')">
-                                <div style="font-weight: bold; font-size: 0.8em;">1176</div>
-                                <div style="font-size: 0.7em; color: #ccc;">FET Comp</div>
-                                <div style="font-size: 0.7em; color: #00ff00;">0%</div>
-                            </div>
-                            <div style="background: linear-gradient(45deg, #333, #666); border: 2px solid #ff6600; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer;" onclick="toggleCompleteUAD('Lexicon')">
-                                <div style="font-weight: bold; font-size: 0.8em;">Lexicon 224</div>
-                                <div style="font-size: 0.7em; color: #ccc;">Digital Reverb</div>
-                                <div style="font-size: 0.7em; color: #00ff00;">0%</div>
-                            </div>
-                            <div style="background: linear-gradient(45deg, #333, #666); border: 2px solid #ff6600; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer;" onclick="toggleCompleteUAD('Galaxy')">
-                                <div style="font-weight: bold; font-size: 0.8em;">Galaxy</div>
-                                <div style="font-size: 0.7em; color: #ccc;">Tape Echo</div>
-                                <div style="font-size: 0.7em; color: #00ff00;">0%</div>
-                            </div>
-                            <div style="background: linear-gradient(45deg, #333, #666); border: 2px solid #ff6600; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer;" onclick="toggleCompleteUAD('Pultec')">
-                                <div style="font-weight: bold; font-size: 0.8em;">Pultec</div>
-                                <div style="font-size: 0.7em; color: #ccc;">EQ Collection</div>
-                                <div style="font-size: 0.7em; color: #00ff00;">0%</div>
-                            </div>
-                            <div style="background: linear-gradient(45deg, #333, #666); border: 2px solid #ff6600; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer;" onclick="toggleCompleteUAD('Ruby')">
-                                <div style="font-weight: bold; font-size: 0.8em;">Ruby 63</div>
-                                <div style="font-size: 0.7em; color: #ccc;">Top Boost Amp</div>
-                                <div style="font-size: 0.7em; color: #00ff00;">0%</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #4ade80; border-radius: 15px; padding: 20px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="color: #4ade80; text-transform: uppercase;">🎙️ Multitrack Recording</h3>
-                            <span style="font-size: 0.8em; padding: 5px 10px; border-radius: 10px; background: #00ff00; color: #000;">READY</span>
-                        </div>
-                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
-                            <button class="complete-btn" onclick="startCompleteRecording()">Record Track</button>
-                            <button class="complete-btn" onclick="stopCompleteRecording()">Stop Recording</button>
-                            <button class="complete-btn" onclick="exportCompleteSession()">Export Session</button>
-                        </div>
-                        <canvas id="completeWaveform" width="100%" height="100" style="width: 100%; height: 100px; background: #1a1a1a; border: 2px solid #4ade80; border-radius: 10px;"></canvas>
-                        <div id="completeTrackList" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px; margin: 10px 0; max-height: 100px; overflow-y: auto; font-size: 0.8em;">
-                            No tracks recorded yet...
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #ff6b9d; border-radius: 15px; padding: 20px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="color: #ff6b9d; text-transform: uppercase;">🎚️ Mixing Console</h3>
-                            <span style="font-size: 0.8em; padding: 5px 10px; border-radius: 10px; background: #00ff00; color: #000;">READY</span>
-                        </div>
-                        <div id="completeMixerTracks" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); gap: 10px; margin: 20px 0;">
-                            <div style="background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #333;">
-                                <div><strong>Track 1</strong></div>
-                                <input type="range" class="fader" min="0" max="1" step="0.01" value="1" orient="vertical" style="width: 20px; height: 60px; margin: 10px auto; display: block;">
-                                <div style="font-size: 0.7em;">Vol: 100%</div>
-                            </div>
-                            <div style="background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #333;">
-                                <div><strong>Track 2</strong></div>
-                                <input type="range" class="fader" min="0" max="1" step="0.01" value="1" orient="vertical" style="width: 20px; height: 60px; margin: 10px auto; display: block;">
-                                <div style="font-size: 0.7em;">Vol: 100%</div>
-                            </div>
-                            <div style="background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #333;">
-                                <div><strong>Track 3</strong></div>
-                                <input type="range" class="fader" min="0" max="1" step="0.01" value="1" orient="vertical" style="width: 20px; height: 60px; margin: 10px auto; display: block;">
-                                <div style="font-size: 0.7em;">Vol: 100%</div>
-                            </div>
-                            <div style="background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid #333;">
-                                <div><strong>Track 4</strong></div>
-                                <input type="range" class="fader" min="0" max="1" step="0.01" value="1" orient="vertical" style="width: 20px; height: 60px; margin: 10px auto; display: block;">
-                                <div style="font-size: 0.7em;">Vol: 100%</div>
-                            </div>
-                        </div>
-                        <button class="complete-btn" onclick="addCompleteTrack()" style="width: 100%;">Add Track</button>
-                    </div>
-                    
-                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #9333ea; border-radius: 15px; padding: 20px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="color: #9333ea; text-transform: uppercase;">🤖 AI Music Assistant</h3>
-                            <span style="font-size: 0.8em; padding: 5px 10px; border-radius: 10px; background: #00ff00; color: #000;">READY</span>
-                        </div>
-                        <div id="completeAISuggestions" style="background: rgba(0,255,255,0.1); border: 2px solid #00ffff; border-radius: 10px; padding: 15px; margin: 15px 0; min-height: 80px;">
-                            <div style="color: #00ffff; font-weight: bold;">🤖 AI Ready</div>
-                            <div style="color: #fff; margin-top: 5px;">Click "Get Suggestion" for musical inspiration!</div>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                            <button class="complete-btn" onclick="getCompleteAISuggestion()">Get AI Suggestion</button>
-                            <button class="complete-btn" onclick="analyzeCompleteJam()">Analyze Jam</button>
-                        </div>
-                    </div>
-                    
-                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #fbbf24; border-radius: 15px; padding: 20px;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <h3 style="color: #fbbf24; text-transform: uppercase;">🎸 Ultimate Jam Modes</h3>
-                            <span style="font-size: 0.8em; padding: 5px 10px; border-radius: 10px; background: #00ff00; color: #000;">READY</span>
-                        </div>
-                        <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
-                            <button class="complete-btn" onclick="ultimateCompleteJam()">Ultimate Jam</button>
-                            <button class="complete-btn" onclick="motownCompleteJam()">Motown Jam</button>
-                            <button class="complete-btn" onclick="wreckingCompleteJam()">Wrecking Crew</button>
-                            <button class="complete-btn" onclick="psychedelicCompleteJam()">Psychedelic Jam</button>
-                            <button class="complete-btn" onclick="stopCompleteJams()">Stop All Jams</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <style>
-                    .complete-btn {
-                        background: linear-gradient(45deg, #333, #666);
-                        border: 2px solid #00ffff;
-                        color: #fff;
-                        padding: 10px;
-                        border-radius: 10px;
-                        cursor: pointer;
-                        font-family: inherit;
-                        font-size: 0.9em;
-                        transition: all 0.3s ease;
-                        text-transform: uppercase;
-                        font-weight: bold;
-                    }
-                    .complete-btn:hover {
-                        background: linear-gradient(45deg, #666, #999);
-                        box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-                        transform: translateY(-2px);
-                    }
-                    .instrument-pad {
-                        background: linear-gradient(45deg, #2a2a2a, #4a4a4a);
-                        border: 2px solid #666;
-                        color: #fff;
-                        padding: 15px 8px;
-                        border-radius: 8px;
-                        cursor: pointer;
-                        font-family: inherit;
-                        font-size: 0.8em;
-                        transition: all 0.2s ease;
-                        text-align: center;
-                    }
-                    .instrument-pad:hover {
-                        background: linear-gradient(45deg, #4a4a4a, #6a6a6a);
-                        border-color: #00ffff;
-                        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-                    }
-                    .instrument-pad.active {
-                        background: linear-gradient(45deg, #00ffaa, #0088aa);
-                        border-color: #00ffff;
-                        color: #000;
-                    }
-                </style>
-            `;
-            
-            updateStatus('Complete Studio loaded - Full professional features available!');
-        }
-
-        // Portable Mode Functions
-        let portableScene, portableCamera, portableRenderer, portableParticles = [];
-        let portableAudioContext, portableAnalyser, portableDataArray;
-        let portableCurrentEffect = 'particles', portableEffectsActive = true;
-        let portableIntensity = 50, portableIsAmplified = false;
-
-        function initPortableWebGL() {
-            try {
-                const canvas = document.getElementById('kozmicCanvas');
-                if (!canvas) return;
-                
-                const container = canvas.parentElement;
-                
-                portableScene = new THREE.Scene();
-                portableCamera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-                portableRenderer = new THREE.WebGLRenderer({ 
-                    canvas: canvas, 
-                    alpha: true,
-                    antialias: true
-                });
-                
-                portableRenderer.setSize(container.clientWidth, container.clientHeight);
-                portableRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-                portableRenderer.setClearColor(0x000011, 0.1);
-                
-                portableCamera.position.z = 5;
-                
-                createPortableParticles();
-                startPortableRenderLoop();
-                
-                updateStatus('WebGL initialized for Portable Studio!');
-                
-            } catch (error) {
-                console.error('WebGL init error:', error);
-                updateStatus('WebGL failed - running in audio-only mode');
-            }
-        }
-
-        function createPortableParticles() {
-            portableParticles.forEach(particle => portableScene.remove(particle));
-            portableParticles = [];
-
-            const count = Math.min(200, portableIntensity * 4);
-            
-            for (let i = 0; i < count; i++) {
-                const geometry = new THREE.SphereGeometry(0.02, 8, 8);
-                const material = new THREE.MeshBasicMaterial({
-                    color: new THREE.Color().setHSL(Math.random(), 1, 0.5),
-                    transparent: true,
-                    opacity: 0.8
-                });
-                
-                const particle = new THREE.Mesh(geometry, material);
-                particle.position.set(
-                    (Math.random() - 0.5) * 10,
-                    (Math.random() - 0.5) * 10,
-                    (Math.random() - 0.5) * 10
-                );
-                
-                particle.userData = {
-                    originalPos: particle.position.clone(),
-                    phase: Math.random() * Math.PI * 2,
-                    speed: 0.5 + Math.random() * 1.5
-                };
-                
-                portableScene.add(particle);
-                portableParticles.push(particle);
-            }
-        }
-
-        function startPortableRenderLoop() {
-            function animate() {
-                if (portableRenderer && currentStudioMode === 'portable') {
-                    requestAnimationFrame(animate);
-                    updatePortableParticles();
-                    portableRenderer.render(portableScene, portableCamera);
-                }
-            }
-            animate();
-        }
-
-        function updatePortableParticles() {
-            if (!portableParticles.length) return;
-
-            const time = Date.now() * 0.001;
-            const audioLevel = getPortableAudioLevel();
-            const multiplier = portableIsAmplified ? 2 : 1;
-
-            portableParticles.forEach((particle, i) => {
-                const userData = particle.userData;
-                const phase = userData.phase + time * userData.speed;
-
-                switch (portableCurrentEffect) {
-                    case 'particles':
-                        particle.position.x = userData.originalPos.x + Math.sin(phase) * audioLevel * 2 * multiplier;
-                        particle.position.y = userData.originalPos.y + Math.cos(phase * 1.3) * audioLevel * 2 * multiplier;
-                        break;
-                    case 'nebula':
-                        const radius = 3 + audioLevel * 2 * multiplier;
-                        particle.position.x = Math.cos(phase + i * 0.1) * radius;
-                        particle.position.y = Math.sin(phase + i * 0.1) * radius;
-                        break;
-                    case 'spiral':
-                        const spiralRadius = 2 + audioLevel * 3 * multiplier;
-                        particle.position.x = Math.cos(time * 0.5 + i * 0.3) * spiralRadius;
-                        particle.position.y = Math.sin(time * 0.5 + i * 0.3) * spiralRadius;
-                        break;
-                    case 'burst':
-                        if (audioLevel > 0.6) {
-                            const direction = particle.position.clone().normalize();
-                            particle.position.addScaledVector(direction, 0.1);
-                        }
-                        if (particle.position.length() > 8) {
-                            particle.position.copy(userData.originalPos);
-                        }
-                        break;
-                }
-
-                const hue = (time * 0.1 + i * 0.01 + audioLevel * 0.5) % 1;
-                particle.material.color.setHSL(hue, 1, 0.5 + audioLevel * 0.3);
-            });
-        }
-
-        function getPortableAudioLevel() {
-            if (!portableAnalyser || !portableDataArray) return 0;
-            
-            portableAnalyser.getByteFrequencyData(portableDataArray);
-            const sum = portableDataArray.reduce((a, b) => a + b, 0);
-            return Math.min((sum / portableDataArray.length) / 128, 1);
-        }
-
-        async function connectPortableAudio() {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({ 
-                    audio: {
-                        echoCancellation: false,
-                        noiseSuppression: false,
-                        autoGainControl: false
-                    } 
-                });
-                
-                portableAudioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const source = portableAudioContext.createMediaStreamSource(stream);
-                portableAnalyser = portableAudioContext.createAnalyser();
-                portableAnalyser.fftSize = 2048;
-                portableDataArray = new Uint8Array(portableAnalyser.frequencyBinCount);
-                
-                source.connect(portableAnalyser);
-                
-                safeElement('portableStatus').textContent = 'LIVE';
-                updateStatus('Portable audio connected - Start jamming!');
-                
-                startPortableVisualization();
-                
-            } catch (error) {
-                console.error('Portable audio error:', error);
-                updateStatus('Audio connection failed - check permissions');
-            }
-        }
-
-        function startPortableVisualization() {
-            function updateVisuals() {
-                if (!portableAnalyser || currentStudioMode !== 'portable') return;
-
-                const audioLevel = getPortableAudioLevel();
-                safeElement('portablePowerBar').style.width = (audioLevel * 100) + '%';
-                
-                const freqBars = document.querySelectorAll('.freq-bar');
-                freqBars.forEach((bar, index) => {
-                    const dataIndex = Math.floor((index / freqBars.length) * portableDataArray.length);
-                    const amplitude = portableDataArray[dataIndex] / 255;
-                    bar.style.height = (amplitude * 50) + 'px';
-                });
-
-                requestAnimationFrame(updateVisuals);
-            }
-            updateVisuals();
-        }
-
-        function setPortableEffect(effect) {
-            portableCurrentEffect = effect;
-            document.querySelectorAll('.effect-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`[data-effect="${effect}"]`).classList.add('active');
-            updateStatus(`Portable effect: ${effect.toUpperCase()}`);
-        }
-
-        function togglePortableEffects() {
-            portableEffectsActive = !portableEffectsActive;
-            updateStatus(`Portable effects: ${portableEffectsActive ? 'ON' : 'OFF'}`);
-        }
-
-        function adjustPortableIntensity() {
-            portableIntensity = portableIntensity >= 100 ? 25 : portableIntensity + 25;
-            createPortableParticles();
-            updateStatus(`Portable intensity: ${portableIntensity}%`);
-        }
-
-        function togglePortableAmplify() {
-            portableIsAmplified = !portableIsAmplified;
-            updateStatus(`Portable amplify: ${portableIsAmplified ? 'ON' : 'OFF'}`);
-        }
-
-        function togglePortableRecord() {
-            updateStatus('Portable recording toggled');
-        }
-
-        function togglePortableTuner() {
-            updateStatus('Portable tuner toggled');
-        }
-
-        function savePortableSession() {
-            const sessionData = {
-                mode: 'portable',
-                effect: portableCurrentEffect,
-                intensity: portableIntensity,
-                amplified: portableIsAmplified,
-                timestamp: Date.now()
-            };
-            
-            const blob = new Blob([JSON.stringify(sessionData, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `kozmic-portable-${Date.now()}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            
-            updateStatus('Portable session saved!');
-        }
-
-        function loadPortableSession() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        try {
-                            const sessionData = JSON.parse(e.target.result);
-                            portableCurrentEffect = sessionData.effect || 'particles';
-                            portableIntensity = sessionData.intensity || 50;
-                            portableIsAmplified = sessionData.amplified || false;
-                            
-                            setPortableEffect(portableCurrentEffect);
-                            createPortableParticles();
-                            
-                            updateStatus('Portable session loaded!');
-                        } catch (error) {
-                            updateStatus('Invalid session file');
-                        }
-                    };
-                    reader.readAsText(file);
-                }
-            };
-            input.click();
-        }
-
-        function exportPortableRecording() {
-            updateStatus('Portable export - feature coming soon!');
-        }
-
-        function resetPortableSession() {
-            portableCurrentEffect = 'particles';
-            portableIntensity = 50;
-            portableIsAmplified = false;
-            setPortableEffect('particles');
-            createPortableParticles();
-            updateStatus('Portable session reset');
-        }
-
-        // Live Mode Functions
-        let liveCurrentGenre = 'none';
-        let liveEffects = { slide: 0, drive: 0, reverb: 0, delay: 0, wah: 0, chorus: 0 };
-        let liveSelectedRhythm = '2_eighths';
-
-        function connectLiveGuitar() {
-            updateStatus('Live guitar connection - feature implemented!');
-        }
-
-        function toggleLiveSpeech() {
-            updateStatus('Live speech control toggled');
-        }
-
-        function toggleLiveAudioRecord() {
-            updateStatus('Live audio recording toggled');
-        }
-
-        function toggleLiveVideoRecord() {
-            updateStatus('Live video recording toggled');
-        }
-
-        function applyLiveGenre(genre) {
-            liveCurrentGenre = genre;
-            updateStatus(`Live genre: ${genre.toUpperCase()}`);
-        }
-
-        function adjustLiveEffect(effect) {
-            liveEffects[effect] = (liveEffects[effect] + 25) % 100;
-            updateStatus(`Live ${effect}: ${liveEffects[effect]}%`);
-        }
-
-        function killLiveEffects() {
-            Object.keys(liveEffects).forEach(key => liveEffects[key] = 0);
-            updateStatus('Live effects killed');
-        }
-
-        function randomLiveEffects() {
-            Object.keys(liveEffects).forEach(key => liveEffects[key] = Math.floor(Math.random() * 100));
-            updateStatus('Live effects randomized');
-        }
-
-        function selectLiveRhythm(element, pattern) {
-            document.querySelectorAll('.beat-pad').forEach(pad => pad.classList.remove('active'));
-            element.classList.add('active');
-            liveSelectedRhythm = pattern;
-            updateStatus(`Live rhythm: ${pattern}`);
-        }
-
-        function playLiveRhythm() {
-            const bpm = document.getElementById('liveBPM').value;
-            updateStatus(`Playing ${liveSelectedRhythm} at ${bpm} BPM`);
-        }
-
-        function saveLiveSession() {
-            const sessionData = {
-                mode: 'live',
-                genre: liveCurrentGenre,
-                effects: liveEffects,
-                rhythm: liveSelectedRhythm,
-                bpm: document.getElementById('liveBPM').value,
-                timestamp: Date.now()
-            };
-            
-            const blob = new Blob([JSON.stringify(sessionData, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `kozmic-live-${Date.now()}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-            
-            updateStatus('Live session saved!');
-        }
-
-        function exportLiveTrack() {
-            updateStatus('Live track export - feature implemented!');
-        }
-
-        // Complete Mode Functions
-        let completeCurrentGenre = 'standard';
-        let completeUADPlugins = {};
-        let completeRecordedTracks = [];
-
-        function changeCompleteGenre(genre) {
-            completeCurrentGenre = genre;
-            updateStatus(`Complete genre: ${genre.toUpperCase()}`);
-            
-            // Update instrument grid based on genre
-            const instruments = {
-                standard: ['Kick', 'Snare', 'Hi-Hat', 'Crash', 'Bass', 'Guitar', 'Keys', 'Vocals'],
-                motown: ['Jamerson Bass', 'Benny Drums', 'Messina Guitar', 'Van Dyke Keys', 'Horns', 'Strings', 'Tamb', 'Vocals'],
-                indian: ['Sitar', 'Tabla', 'Tanpura', 'Bansuri', 'Harmonium', 'Veena', 'Mridangam', 'Drone']
-            };
-            
-            const genreInstruments = instruments[genre] || instruments.standard;
-            const grid = document.getElementById('completeInstrumentGrid');
-            if (grid) {
-                grid.innerHTML = '';
-                genreInstruments.forEach((instrument, index) => {
-                    const button = document.createElement('button');
-                    button.className = 'instrument-pad';
-                    button.textContent = instrument;
-                    button.onclick = () => playCompleteInstrument(index, instrument);
-                    grid.appendChild(button);
-                });
-            }
-        }
-
-        function playCompleteInstrument(index, instrument) {
-            updateStatus(`Playing: ${instrument}`);
-        }
-
-        function loadCompleteUAD() {
-            updateStatus('Complete UAD presets loaded');
-        }
-
-        function resetCompleteUAD() {
-            Object.keys(completeUADPlugins).forEach(key => completeUADPlugins[key] = 0);
-            updateStatus('Complete UAD plugins reset');
-        }
-
-        function toggleCompleteUAD(plugin) {
-            completeUADPlugins[plugin] = (completeUADPlugins[plugin] || 0) + 25;
-            if (completeUADPlugins[plugin] > 100) completeUADPlugins[plugin] = 0;
-            updateStatus(`Complete ${plugin}: ${completeUADPlugins[plugin]}%`);
-        }
-
-        function startCompleteRecording() {
-            updateStatus('Complete multitrack recording started');
-        }
-
-        function stopCompleteRecording() {
-            updateStatus('Complete recording stopped');
-        }
-
-        function exportCompleteSession() {
-            updateStatus('Complete session exported');
-        }
-
-        function addCompleteTrack() {
-            updateStatus('Complete track added to mixer');
-        }
-
-        function getCompleteAISuggestion() {
-            const suggestions = [
-                "Try adding a seventh chord progression in the current key",
-                "Consider layering a bass line with quarter note patterns",
-                "Add some reverb to create spatial depth",
-                "Experiment with polyrhythms for complexity",
-                "Use the Pultec EQ to brighten the high frequencies"
-            ];
-            
-            const suggestion = suggestions[Math.floor(Math.random() * suggestions.length)];
-            document.getElementById('completeAISuggestions').innerHTML = `
-                <div style="color: #00ffff; font-weight: bold;">🤖 AI Suggestion</div>
-                <div style="color: #fff; margin-top: 5px;">${suggestion}</div>
-            `;
-            updateStatus('AI suggestion provided');
-        }
-
-        function analyzeCompleteJam() {
-            const analysis = `
-                <div style="color: #00ffff; font-weight: bold;">📊 Jam Analysis</div>
-                <div style="color: #fff; margin-top: 5px;">
-                    Genre: ${completeCurrentGenre}<br>
-                    Active Plugins: ${Object.keys(completeUADPlugins).length}<br>
-                    Tracks: ${completeRecordedTracks.length}<br>
-                    Recommendation: ${completeRecordedTracks.length < 3 ? 'Add more layers' : 'Focus on mixing'}
-                </div>
-            `;
-            
-            document.getElementById('completeAISuggestions').innerHTML = analysis;
-            updateStatus('Jam analysis complete');
-        }
-
-        function ultimateCompleteJam() {
-            const genres = ['motown', 'reggae', 'psychedelic', 'indian', 'african'];
-            const randomGenre = genres[Math.floor(Math.random() * genres.length)];
-            changeCompleteGenre(randomGenre);
-            updateStatus(`Ultimate jam started: ${randomGenre.toUpperCase()}`);
-        }
-
-        function motownCompleteJam() {
-            changeCompleteGenre('motown');
-            completeUADPlugins['LA-2A'] = 75;
-            completeUADPlugins['Lexicon'] = 50;
-            updateStatus('Motown jam with Funk Brothers activated!');
-        }
-
-        function wreckingCompleteJam() {
-            changeCompleteGenre('wreckingCrew');
-            completeUADPlugins['1176'] = 100;
-            completeUADPlugins['Lexicon'] = 75;
-            updateStatus('Wrecking Crew Wall of Sound activated!');
-        }
-
-        function psychedelicCompleteJam() {
-            changeCompleteGenre('psychedelic');
-            completeUADPlugins['Galaxy'] = 75;
-            completeUADPlugins['Ruby'] = 50;
-            updateStatus('Psychedelic space jam activated!');
-        }
-
-        function stopCompleteJams() {
-            resetCompleteUAD();
-            changeCompleteGenre('standard');
-            updateStatus('All jams stopped and reset');
-        }
-
-        // Master Studio Functions
-        function pulseCreatureMaster() {
-            creatureClicks++;
-            const creature = safeElement('cosmicCreatureMaster');
-            creature.classList.add('creature-pulse');
-            
-            setTimeout(() => {
-                creature.classList.remove('creature-pulse');
-            }, 600);
-
-            if (creatureClicks >= 5) {
-                triggerMasterHypernova();
-                creatureClicks = 0;
-            }
-
-            updateStatus(`Cosmic creature pulsed! (${creatureClicks}/5)`);
-        }
-
-        function triggerMasterHypernova() {
-            safeElement('easterEgg').style.display = 'block';
-            document.body.style.filter = 'brightness(3)';
-            setTimeout(() => {
-                document.body.style.filter = 'brightness(1)';
-            }, 200);
-            
-            updateStatus('🌟 HYPERNOVA ACTIVATED! 🌟');
-        }
-
-        function closeEasterEgg() {
-            safeElement('easterEgg').style.display = 'none';
-            updateStatus('Hypernova complete - continue jamming!');
-        }
-
-        // Keyboard Controls
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey) {
-                switch (e.key) {
-                    case '1':
-                        e.preventDefault();
-                        switchMode('portable');
-                        break;
-                    case '2':
-                        e.preventDefault();
-                        switchMode('live');
-                        break;
-                    case '3':
-                        e.preventDefault();
-                        switchMode('complete');
-                        break;
-                }
-            }
-        });
-
-        // Initialize
-        window.addEventListener('load', () => {
-            sessionStartTime = Date.now();
-            setInterval(updateTimer, 1000);
-            
-            updateStatus('🌌 KOZMIC MASTER STUDIO ready! Select a mode to begin.');
-            
-            // Auto-load portable mode for demo
-            setTimeout(() => {
-                switchMode('portable');
-            }, 1000);
-        });
-
-        // Responsive handling
-        window.addEventListener('resize', () => {
-            if (portableRenderer && portableCamera && currentStudioMode === 'portable') {
-                const canvas = document.getElementById('kozmicCanvas');
-                if (canvas) {
-                    const container = canvas.parentElement;
-                    portableCamera.aspect = container.clientWidth / container.clientHeight;
-                    portableCamera.updateProjectionMatrix();
-                    portableRenderer.setSize(container.clientWidth, container.clientHeight);
-                }
-            }
-        });
-
-        console.log('🌌 KOZMIC MASTER STUDIO loaded successfully! 🎸');
-    </script>
-</body>
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1058,6 +205,60 @@
             box-shadow: 0 0 50px rgba(255, 217, 61, 0.8);
         }
 
+        /* Universal Button Styles */
+        .kozmic-btn, .live-btn, .complete-btn {
+            background: linear-gradient(45deg, #ff6b9d, #4ecdc4);
+            border: none;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .kozmic-btn:hover, .live-btn:hover, .complete-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+        }
+
+        .kozmic-btn.active, .live-btn.active, .complete-btn.active {
+            background: linear-gradient(45deg, #ffd93d, #ff6b9d);
+            box-shadow: 0 0 20px rgba(255, 217, 61, 0.5);
+        }
+
+        /* Effect Controls */
+        .effect-knob {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #333, #666);
+            position: relative;
+            cursor: pointer;
+            margin: 5px auto;
+            transition: transform 0.2s ease;
+        }
+
+        .effect-knob:hover {
+            transform: scale(1.1);
+        }
+
+        .effect-knob::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 15px;
+            background: #ff6b9d;
+            border-radius: 2px;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .master-title {
@@ -1087,19 +288,17 @@
                 font-size: 0.7rem;
             }
         }
-
-        /* Mode-specific styles will be added dynamically */
     </style>
 </head>
 <body>
     <div class="version-indicator">
-        <div>🌌 KOZMIC MASTER STUDIO v3.0</div>
+        <div>🌌 KOZMIC MASTER STUDIO v4.0</div>
         <div id="currentMode">Mode: None</div>
     </div>
 
     <div class="master-header">
         <h1 class="master-title">🌌 KOZMIC MASTER STUDIO 🎸</h1>
-        <p style="font-size: 1.2rem; color: #4ecdc4;">Ultimate Edition - Three Studios in One</p>
+        <p style="font-size: 1.2rem; color: #4ecdc4;">Ultimate Edition - Three Professional Studios in One</p>
         
         <div class="mode-selector">
             <button class="mode-btn" data-mode="portable" onclick="switchMode('portable')">
@@ -1148,6 +347,23 @@
         let activeModules = {};
         let masterAudioContext = null;
         
+        // Mode-specific variables
+        let portableCanvas, portableCtx, portableGL;
+        let portableAudioContext, portableSource, portableAnalyser, portableDataArray;
+        let portableCurrentEffect = 'particles';
+        let portableIntensity = 50;
+        let portableIsAmplified = false;
+        let portableParticles = [];
+        let portableAnimationId;
+        
+        let liveCurrentGenre = 'none';
+        let liveEffects = { slide: 0, drive: 0, reverb: 0, delay: 0, wah: 0, chorus: 0 };
+        let liveAudioContext, liveSource, liveEffectsChain = {};
+        
+        let completeCurrentGenre = 'standard';
+        let completeUADPlugins = {};
+        let completeTracks = [];
+        
         // Mode Descriptions
         const modeDescriptions = {
             portable: {
@@ -1179,6 +395,7 @@
 
         function updateStatus(message) {
             safeElement('statusText').textContent = message;
+            console.log('Kozmic Master Studio:', message);
         }
 
         function updateTimer() {
@@ -1238,13 +455,24 @@
             const container = safeElement('studioContainer');
             container.innerHTML = '';
             
-            // Stop any audio contexts
-            if (masterAudioContext) {
-                masterAudioContext.close();
-                masterAudioContext = null;
+            // Stop animations
+            if (portableAnimationId) {
+                cancelAnimationFrame(portableAnimationId);
+                portableAnimationId = null;
             }
             
-            // Clear any intervals/timeouts
+            // Close audio contexts
+            if (portableAudioContext && portableAudioContext.state !== 'closed') {
+                portableAudioContext.close();
+                portableAudioContext = null;
+            }
+            if (liveAudioContext && liveAudioContext.state !== 'closed') {
+                liveAudioContext.close();
+                liveAudioContext = null;
+            }
+            
+            // Clear variables
+            portableParticles = [];
             activeModules = {};
         }
 
@@ -1267,7 +495,7 @@
             }
         }
 
-        // Portable Studio Mode
+        // PORTABLE STUDIO MODE
         async function loadPortableMode(container) {
             container.innerHTML = `
                 <div style="display: grid; grid-template-columns: 1fr; gap: 20px;">
@@ -1287,18 +515,13 @@
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
                                 <button class="kozmic-btn" onclick="connectPortableAudio()">CONNECT</button>
                                 <button class="kozmic-btn" onclick="togglePortableRecord()">RECORD</button>
-                                <button class="kozmic-btn" onclick="togglePortableTuner()">TUNER</button>
                                 <button class="kozmic-btn" onclick="togglePortableAmplify()">AMPLIFY</button>
+                                <button class="kozmic-btn" onclick="exportPortableRecording()">EXPORT</button>
                             </div>
                             <div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 3px; height: 60px; background: rgba(0,0,0,0.3); border-radius: 8px; padding: 5px;">
-                                <div class="freq-bar" style="background: linear-gradient(to top, #4ecdc4, #ff6b9d, #ffd93d); border-radius: 3px; transition: height 0.1s ease; min-height: 2px;"></div>
-                                <div class="freq-bar" style="background: linear-gradient(to top, #4ecdc4, #ff6b9d, #ffd93d); border-radius: 3px; transition: height 0.1s ease; min-height: 2px;"></div>
-                                <div class="freq-bar" style="background: linear-gradient(to top, #4ecdc4, #ff6b9d, #ffd93d); border-radius: 3px; transition: height 0.1s ease; min-height: 2px;"></div>
-                                <div class="freq-bar" style="background: linear-gradient(to top, #4ecdc4, #ff6b9d, #ffd93d); border-radius: 3px; transition: height 0.1s ease; min-height: 2px;"></div>
-                                <div class="freq-bar" style="background: linear-gradient(to top, #4ecdc4, #ff6b9d, #ffd93d); border-radius: 3px; transition: height 0.1s ease; min-height: 2px;"></div>
-                                <div class="freq-bar" style="background: linear-gradient(to top, #4ecdc4, #ff6b9d, #ffd93d); border-radius: 3px; transition: height 0.1s ease; min-height: 2px;"></div>
-                                <div class="freq-bar" style="background: linear-gradient(to top, #4ecdc4, #ff6b9d, #ffd93d); border-radius: 3px; transition: height 0.1s ease; min-height: 2px;"></div>
-                                <div class="freq-bar" style="background: linear-gradient(to top, #4ecdc4, #ff6b9d, #ffd93d); border-radius: 3px; transition: height 0.1s ease; min-height: 2px;"></div>
+                                ${Array(8).fill().map(() => 
+                                    '<div class="freq-bar" style="background: linear-gradient(to top, #4ecdc4, #ff6b9d, #ffd93d); border-radius: 3px; transition: height 0.1s ease; min-height: 2px;"></div>'
+                                ).join('')}
                             </div>
                         </div>
                         
@@ -1313,43 +536,14 @@
                                 <button class="effect-btn" data-effect="burst" onclick="setPortableEffect('burst')">BURST</button>
                             </div>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <button class="kozmic-btn" onclick="togglePortableEffects()">EFFECTS ON</button>
-                                <button class="kozmic-btn" onclick="adjustPortableIntensity()">INTENSITY</button>
-                            </div>
-                        </div>
-                        
-                        <div style="background: rgba(44, 44, 78, 0.9); border: 2px solid #ff6b9d; border-radius: 15px; padding: 20px;">
-                            <h3 style="color: #ff6b9d; text-align: center; margin-bottom: 15px;">💾 SESSION CONTROL</h3>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <button class="kozmic-btn" onclick="savePortableSession()">SAVE</button>
-                                <button class="kozmic-btn" onclick="loadPortableSession()">LOAD</button>
-                                <button class="kozmic-btn" onclick="exportPortableRecording()">EXPORT</button>
-                                <button class="kozmic-btn" onclick="resetPortableSession()">RESET</button>
-                            </div>
-                            <div id="portableSessionInfo" style="margin-top: 10px; padding: 8px; background: rgba(0,0,0,0.4); border-radius: 8px; font-size: 0.8rem;">
-                                Session: Ready<br>
-                                Effect: PARTICLES<br>
-                                Mode: PORTABLE
+                                <button class="kozmic-btn" onclick="adjustPortableIntensity()">INTENSITY: ${portableIntensity}%</button>
+                                <button class="kozmic-btn" onclick="savePortableSession()">SAVE SESSION</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <style>
-                    .kozmic-btn {
-                        background: linear-gradient(45deg, #ff6b9d, #4ecdc4);
-                        border: none;
-                        padding: 12px 8px;
-                        border-radius: 12px;
-                        color: white;
-                        font-weight: bold;
-                        font-family: 'Courier New', monospace;
-                        font-size: 0.9rem;
-                        cursor: pointer;
-                        transition: all 0.3s ease;
-                    }
-                    .kozmic-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4); }
-                    .kozmic-btn.active { background: linear-gradient(45deg, #ffd93d, #ff6b9d); }
                     .effect-btn {
                         padding: 8px 4px;
                         font-size: 0.8rem;
@@ -1367,99 +561,543 @@
             
             // Initialize WebGL for portable mode
             initPortableWebGL();
-            
             updateStatus('Portable Studio loaded - Perfect for mobile jamming!');
         }
 
-        // Live Console Mode
+        // LIVE CONSOLE MODE
         async function loadLiveMode(container) {
             container.innerHTML = `
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
                     <div style="background: rgba(255, 107, 157, 0.15); border: 2px solid #ff6b9d; border-radius: 15px; padding: 20px;">
-                        <h2 style="color: #ff6b9d; margin-bottom: 15px; text-align: center;">🎸 Guitar & Video Input</h2>
-                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <h3 style="color: #ff6b9d; margin-bottom: 15px; text-align: center;">🎸 Guitar Input</h3>
+                        <div style="display: flex; flex-direction: column; gap: 10px;">
                             <button class="live-btn" onclick="connectLiveGuitar()">Connect Guitar</button>
-                            <button class="live-btn" onclick="toggleLiveSpeech()">Speech Control 🎤</button>
-                            <button class="live-btn" onclick="toggleLiveAudioRecord()">Record Audio 🎙</button>
-                            <button class="live-btn" onclick="toggleLiveVideoRecord()">Record Video 🎥</button>
-                            
-                            <div style="width: 100%; height: 120px; background: linear-gradient(90deg, #1a1a2e, #0f3460); border-radius: 10px; position: relative; overflow: hidden;">
-                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; font-size: 14px;">
-                                    🎸 Guitar Visualization Ready<br><small>Connect webcam for video</small>
-                                </div>
-                                <div class="guitar-string" style="position: absolute; width: 100%; height: 2px; background: #c0c0c0; top: 10px;"></div>
-                                <div class="guitar-string" style="position: absolute; width: 100%; height: 2px; background: #c0c0c0; top: 30px;"></div>
-                                <div class="guitar-string" style="position: absolute; width: 100%; height: 2px; background: #c0c0c0; top: 50px;"></div>
-                                <div class="guitar-string" style="position: absolute; width: 100%; height: 2px; background: #c0c0c0; top: 70px;"></div>
-                                <div class="guitar-string" style="position: absolute; width: 100%; height: 2px; background: #c0c0c0; top: 90px;"></div>
-                                <div class="guitar-string" style="position: absolute; width: 100%; height: 2px; background: #c0c0c0; top: 110px;"></div>
-                            </div>
-                            
-                            <div style="width: 100%; height: 30px; background: #2c2c4e; border-radius: 15px; overflow: hidden; position: relative;">
-                                <div id="liveVolumeBar" style="height: 100%; background: linear-gradient(90deg, #00ff00, #ffff00, #ff0000); width: 0%; transition: width 0.1s ease;"></div>
-                            </div>
-                            
-                            <div id="liveStatus" style="background: rgba(0, 0, 0, 0.5); padding: 10px; border-radius: 10px; font-family: monospace; font-size: 12px; min-height: 60px;">
-                                Ready for your 2 guitars...<br>
-                                Click "Connect Guitar" to start!
-                            </div>
+                            <button class="live-btn" onclick="toggleLiveAudioRecord()">Record Audio</button>
+                            <button class="live-btn" onclick="toggleLiveVideoRecord()">Record Video</button>
+                            <button class="live-btn" onclick="exportLiveTrack()">Export Track</button>
+                        </div>
+                        <div style="margin-top: 15px; height: 100px; background: rgba(0,0,0,0.3); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #4ecdc4;">
+                            🎸 Guitar Visualization Ready
                         </div>
                     </div>
                     
                     <div style="background: rgba(255, 107, 157, 0.15); border: 2px solid #ff6b9d; border-radius: 15px; padding: 20px;">
-                        <h2 style="color: #ff6b9d; margin-bottom: 15px; text-align: center;">🌟 Genre Selector</h2>
-                        <div style="display: grid; grid-template-columns: 1fr; gap: 10px;">
-                            <button class="live-btn motown-style" onclick="applyLiveGenre('motown')" style="background: linear-gradient(45deg, #d4af37, #ffd700); color: #000;">🎵 Motown</button>
-                            <button class="live-btn" onclick="applyLiveGenre('blues')" style="background: linear-gradient(45deg, #1e3c72, #2a5298);">🎸 Blues</button>
-                            <button class="live-btn" onclick="applyLiveGenre('jazz')" style="background: linear-gradient(45deg, #8b4513, #daa520);">🎷 Jazz</button>
-                            <button class="live-btn" onclick="applyLiveGenre('rock')" style="background: linear-gradient(45deg, #ff4500, #ff6347);">🤘 Rock</button>
-                            <button class="live-btn" onclick="applyLiveGenre('funk')" style="background: linear-gradient(45deg, #800080, #ff1493);">🎺 Funk</button>
-                            <button class="live-btn" onclick="applyLiveGenre('psychedelic')" style="background: linear-gradient(45deg, #ff69b4, #9370db);">🌈 Psychedelic</button>
+                        <h3 style="color: #ff6b9d; margin-bottom: 15px; text-align: center;">🎛️ Effects Rack</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px;">
+                            ${['slide', 'drive', 'reverb', 'delay', 'wah', 'chorus'].map(effect => `
+                                <div style="text-align: center;">
+                                    <label style="font-size: 0.8rem; color: #4ecdc4;">${effect.charAt(0).toUpperCase() + effect.slice(1)}</label>
+                                    <div class="effect-knob" onclick="adjustLiveEffect('${effect}')"></div>
+                                    <div style="font-size: 0.7rem; color: #ffd93d;" id="${effect}Value">0%</div>
+                                </div>
+                            `).join('')}
                         </div>
-                        
-                        <div style="margin-top: 15px;">
-                            <h3 style="color: #4ecdc4; margin-bottom: 10px;">🎛️ Effects Rack</h3>
-                            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Slide</label>
-                                    <div class="effect-knob" data-effect="slide" onclick="adjustLiveEffect('slide')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Drive</label>
-                                    <div class="effect-knob" data-effect="drive" onclick="adjustLiveEffect('drive')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Reverb</label>
-                                    <div class="effect-knob" data-effect="reverb" onclick="adjustLiveEffect('reverb')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Delay</label>
-                                    <div class="effect-knob" data-effect="delay" onclick="adjustLiveEffect('delay')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Wah</label>
-                                    <div class="effect-knob" data-effect="wah" onclick="adjustLiveEffect('wah')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                                <div style="text-align: center;">
-                                    <label style="font-size: 0.8rem;">Chorus</label>
-                                    <div class="effect-knob" data-effect="chorus" onclick="adjustLiveEffect('chorus')" style="width: 50px; height: 50px; background: radial-gradient(circle, #333, #666); border-radius: 50%; position: relative; cursor: pointer; margin: 5px auto;">
-                                        <div style="position: absolute; top: 3px; left: 50%; width: 2px; height: 15px; background: #ff6b9d; transform: translateX(-50%); border-radius: 1px;"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                                <button class="live-btn" onclick="killLiveEffects()">🔇 Kill Effects</button>
-                                <button class="live-btn" onclick="randomLiveEffects()">🎲 Random</button>
-                            </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <button class="live-btn" onclick="killLiveEffects()">Kill Effects</button>
+                            <button class="live-btn" onclick="randomLiveEffects()">Random Mode</button>
                         </div>
                     </div>
+                    
+                    <div style="background: rgba(255, 107, 157, 0.15); border: 2px solid #ff6b9d; border-radius: 15px; padding: 20px;">
+                        <h3 style="color: #ff6b9d; margin-bottom: 15px; text-align: center;">🎵 Genre Presets</h3>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+                            ${['motown', 'blues', 'jazz', 'rock', 'funk', 'psychedelic'].map(genre => `
+                                <button class="live-btn" onclick="setLiveGenre('${genre}')">${genre.charAt(0).toUpperCase() + genre.slice(1)}</button>
+                            `).join('')}
+                        </div>
+                        <div style="margin-top: 15px;">
+                            <label style="color: #4ecdc4;">BPM:</label>
+                            <input type="number" id="liveBPM" value="120" min="60" max="200" style="width: 100%; padding: 8px; background: rgba(0,0,0,0.3); color: white; border: 1px solid #4ecdc4; border-radius: 5px;">
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            updateStatus('Live Console loaded - Perfect for performance!');
+        }
+
+        // COMPLETE STUDIO MODE
+        async function loadCompleteMode(container) {
+            container.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #00ffff; border-radius: 15px; padding: 20px;">
+                        <h3 style="color: #00ffff; text-align: center; margin-bottom: 15px;">🌍 World Music</h3>
+                        <select id="completeGenreSelect" onchange="changeCompleteGenre(this.value)" style="width: 100%; padding: 10px; background: #1a1a1a; border: 2px solid #00ffff; color: #fff; border-radius: 8px; margin-bottom: 15px;">
+                            <option value="standard">Standard</option>
+                            <option value="motown">Motown (Funk Brothers)</option>
+                            <option value="wreckingCrew">Wrecking Crew</option>
+                            <option value="reggae">Reggae</option>
+                            <option value="psychedelic">Psychedelic</option>
+                            <option value="indian">Indian Classical</option>
+                            <option value="african">African Polyrhythms</option>
+                        </select>
+                        <div id="completeInstrumentGrid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+                            ${['Kick', 'Snare', 'Hi-Hat', 'Crash', 'Bass', 'Guitar', 'Keys', 'Vocals'].map((instrument, index) => `
+                                <button class="instrument-pad" onclick="playCompleteInstrument(${index}, '${instrument}')">${instrument}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #ff6600; border-radius: 15px; padding: 20px;">
+                        <h3 style="color: #ff6600; text-align: center; margin-bottom: 15px;">🔊 UAD Plugins</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                            ${['LA-2A', '1176', 'Lexicon', 'Galaxy', 'Pultec', 'Ruby'].map(plugin => `
+                                <div style="background: linear-gradient(45deg, #333, #666); border: 2px solid #ff6600; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer;" onclick="toggleCompleteUAD('${plugin}')">
+                                    <div style="font-weight: bold; font-size: 0.8em;">${plugin}</div>
+                                    <div style="font-size: 0.7em; color: #00ff00;" id="${plugin}Status">0%</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div style="margin-top: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <button class="complete-btn" onclick="loadCompleteUAD()">Load Presets</button>
+                            <button class="complete-btn" onclick="resetCompleteUAD()">Reset All</button>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #4ade80; border-radius: 15px; padding: 20px;">
+                        <h3 style="color: #4ade80; text-align: center; margin-bottom: 15px;">🎙️ Multitrack</h3>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px;">
+                            <button class="complete-btn" onclick="startCompleteRecording()">Record</button>
+                            <button class="complete-btn" onclick="stopCompleteRecording()">Stop</button>
+                            <button class="complete-btn" onclick="exportCompleteSession()">Export</button>
+                        </div>
+                        <canvas id="completeWaveform" width="100%" height="80" style="width: 100%; height: 80px; background: #1a1a1a; border: 2px solid #4ade80; border-radius: 10px;"></canvas>
+                        <div id="completeTrackList" style="background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px; margin: 10px 0; font-size: 0.8em; max-height: 60px; overflow-y: auto;">
+                            No tracks recorded yet...
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(0, 0, 0, 0.7); border: 2px solid #9333ea; border-radius: 15px; padding: 20px;">
+                        <h3 style="color: #9333ea; text-align: center; margin-bottom: 15px;">🤖 AI Assistant</h3>
+                        <div id="completeAISuggestions" style="background: rgba(0,255,255,0.1); border: 2px solid #00ffff; border-radius: 10px; padding: 15px; margin: 15px 0; min-height: 80px;">
+                            <div style="color: #00ffff; font-weight: bold;">🤖 AI Ready</div>
+                            <div style="color: #fff; margin-top: 5px;">Click "Get Suggestion" for musical inspiration!</div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <button class="complete-btn" onclick="getCompleteAISuggestion()">Get Suggestion</button>
+                            <button class="complete-btn" onclick="analyzeCompleteJam()">Analyze Jam</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <style>
+                    .instrument-pad {
+                        background: linear-gradient(45deg, #2a2a2a, #4a4a4a);
+                        border: 2px solid #666;
+                        color: #fff;
+                        padding: 10px 5px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-family: inherit;
+                        font-size: 0.7rem;
+                        transition: all 0.2s ease;
+                        text-align: center;
+                    }
+                    .instrument-pad:hover {
+                        background: linear-gradient(45deg, #4a4a4a, #6a6a6a);
+                        border-color: #00ffff;
+                        box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+                    }
+                </style>
+            `;
+            
+            updateStatus('Complete Studio loaded - Full professional features!');
+        }
+
+        // PORTABLE STUDIO FUNCTIONS
+        function initPortableWebGL() {
+            try {
+                const canvas = document.getElementById('kozmicCanvas');
+                if (!canvas) return;
+                
+                const container = canvas.parentElement;
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+                
+                // Try WebGL first, fallback to 2D
+                try {
+                    portableGL = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                    if (!portableGL) throw new Error('WebGL not supported');
+                    
+                    portableGL.viewport(0, 0, canvas.width, canvas.height);
+                    portableGL.clearColor(0.1, 0.1, 0.18, 1.0);
+                    
+                    updateStatus('WebGL initialized successfully! ✨');
+                } catch (error) {
+                    portableCtx = canvas.getContext('2d');
+                    updateStatus('Using 2D Canvas (WebGL unavailable)');
+                }
+                
+                createPortableParticles();
+                startPortableVisualization();
+                
+            } catch (error) {
+                console.error('Canvas init error:', error);
+                updateStatus('Canvas initialization failed');
+            }
+        }
+
+        function createPortableParticles() {
+            portableParticles = [];
+            const count = Math.min(100, portableIntensity * 2);
+            
+            for (let i = 0; i < count; i++) {
+                portableParticles.push({
+                    x: Math.random() * (portableCanvas?.width || 800),
+                    y: Math.random() * (portableCanvas?.height || 400),
+                    vx: (Math.random() - 0.5) * 4,
+                    vy: (Math.random() - 0.5) * 4,
+                    size: Math.random() * 3 + 1,
+                    color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+                    life: 1.0,
+                    decay: Math.random() * 0.02 + 0.005
+                });
+            }
+        }
+
+        function startPortableVisualization() {
+            function animate() {
+                if (currentStudioMode === 'portable') {
+                    portableAnimationId = requestAnimationFrame(animate);
+                    renderPortableEffect();
+                }
+            }
+            animate();
+        }
+
+        function renderPortableEffect() {
+            if (portableGL) {
+                portableGL.clear(portableGL.COLOR_BUFFER_BIT);
+                // WebGL rendering would go here
+            } else if (portableCtx) {
+                portableCtx.fillStyle = 'rgba(26, 26, 46, 0.1)';
+                portableCtx.fillRect(0, 0, portableCtx.canvas.width, portableCtx.canvas.height);
+                
+                // Simple particle rendering
+                portableParticles.forEach((particle, index) => {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    particle.life -= particle.decay;
+                    
+                    if (particle.x < 0 || particle.x > portableCtx.canvas.width) particle.vx *= -1;
+                    if (particle.y < 0 || particle.y > portableCtx.canvas.height) particle.vy *= -1;
+                    
+                    if (particle.life <= 0) {
+                        portableParticles[index] = {
+                            x: Math.random() * portableCtx.canvas.width,
+                            y: Math.random() * portableCtx.canvas.height,
+                            vx: (Math.random() - 0.5) * 4,
+                            vy: (Math.random() - 0.5) * 4,
+                            size: Math.random() * 3 + 1,
+                            color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+                            life: 1.0,
+                            decay: Math.random() * 0.02 + 0.005
+                        };
+                    }
+                    
+                    portableCtx.save();
+                    portableCtx.globalAlpha = particle.life;
+                    portableCtx.fillStyle = particle.color;
+                    portableCtx.beginPath();
+                    portableCtx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+                    portableCtx.fill();
+                    portableCtx.restore();
+                });
+            }
+        }
+
+        async function connectPortableAudio() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                portableAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                portableSource = portableAudioContext.createMediaStreamSource(stream);
+                portableAnalyser = portableAudioContext.createAnalyser();
+                portableAnalyser.fftSize = 2048;
+                portableDataArray = new Uint8Array(portableAnalyser.frequencyBinCount);
+                
+                portableSource.connect(portableAnalyser);
+                
+                safeElement('portableStatus').textContent = 'LIVE';
+                updateStatus('Portable audio connected! 🎸');
+            } catch (error) {
+                updateStatus('Audio connection failed');
+            }
+        }
+
+        function setPortableEffect(effect) {
+            portableCurrentEffect = effect;
+            document.querySelectorAll('.effect-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-effect="${effect}"]`)?.classList.add('active');
+            updateStatus(`Effect: ${effect.toUpperCase()}`);
+        }
+
+        function adjustPortableIntensity() {
+            portableIntensity = portableIntensity >= 100 ? 25 : portableIntensity + 25;
+            createPortableParticles();
+            updateStatus(`Intensity: ${portableIntensity}%`);
+            
+            // Update button text
+            const btn = event.target;
+            if (btn) btn.textContent = `INTENSITY: ${portableIntensity}%`;
+        }
+
+        function togglePortableAmplify() {
+            portableIsAmplified = !portableIsAmplified;
+            updateStatus(`Amplify: ${portableIsAmplified ? 'ON' : 'OFF'}`);
+        }
+
+        function togglePortableRecord() {
+            updateStatus('Recording toggled');
+        }
+
+        function exportPortableRecording() {
+            updateStatus('Export feature - record something first!');
+        }
+
+        function savePortableSession() {
+            const sessionData = {
+                mode: 'portable',
+                effect: portableCurrentEffect,
+                intensity: portableIntensity,
+                amplified: portableIsAmplified,
+                timestamp: Date.now()
+            };
+            
+            const blob = new Blob([JSON.stringify(sessionData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `kozmic-portable-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            updateStatus('Portable session saved! 💾');
+        }
+
+        // LIVE CONSOLE FUNCTIONS
+        async function connectLiveGuitar() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                liveAudioContext = new (window.AudioContext || window.webkitAudioContext)();
+                liveSource = liveAudioContext.createMediaStreamSource(stream);
+                updateStatus('Live guitar connected! 🎸');
+            } catch (error) {
+                updateStatus('Guitar connection failed');
+            }
+        }
+
+        function adjustLiveEffect(effect) {
+            liveEffects[effect] = (liveEffects[effect] + 25) % 101;
+            const valueElement = document.getElementById(effect + 'Value');
+            if (valueElement) valueElement.textContent = liveEffects[effect] + '%';
+            updateStatus(`${effect}: ${liveEffects[effect]}%`);
+        }
+
+        function killLiveEffects() {
+            Object.keys(liveEffects).forEach(effect => {
+                liveEffects[effect] = 0;
+                const valueElement = document.getElementById(effect + 'Value');
+                if (valueElement) valueElement.textContent = '0%';
+            });
+            updateStatus('All effects killed! 🔇');
+        }
+
+        function randomLiveEffects() {
+            Object.keys(liveEffects).forEach(effect => {
+                liveEffects[effect] = Math.floor(Math.random() * 101);
+                const valueElement = document.getElementById(effect + 'Value');
+                if (valueElement) valueElement.textContent = liveEffects[effect] + '%';
+            });
+            updateStatus('Effects randomized! 🎲');
+        }
+
+        function setLiveGenre(genre) {
+            liveCurrentGenre = genre;
+            updateStatus(`Genre: ${genre.toUpperCase()}`);
+        }
+
+        function toggleLiveAudioRecord() {
+            updateStatus('Audio recording toggled');
+        }
+
+        function toggleLiveVideoRecord() {
+            updateStatus('Video recording toggled');
+        }
+
+        function exportLiveTrack() {
+            updateStatus('Track export - record something first!');
+        }
+
+        // COMPLETE STUDIO FUNCTIONS
+        function changeCompleteGenre(genre) {
+            completeCurrentGenre = genre;
+            updateStatus(`Complete genre: ${genre.toUpperCase()}`);
+            
+            const instruments = {
+                standard: ['Kick', 'Snare', 'Hi-Hat', 'Crash', 'Bass', 'Guitar', 'Keys', 'Vocals'],
+                motown: ['Jamerson Bass', 'Benny Drums', 'Messina Guitar', 'Van Dyke Keys', 'Horns', 'Strings', 'Tamb', 'Vocals'],
+                indian: ['Sitar', 'Tabla', 'Tanpura', 'Bansuri', 'Harmonium', 'Veena', 'Mridangam', 'Drone'],
+                african: ['Djembe', 'Kora', 'Balafon', 'Shekere', 'Talking Drum', 'Mbira', 'Bass', 'Vocals']
+            };
+            
+            const genreInstruments = instruments[genre] || instruments.standard;
+            const grid = document.getElementById('completeInstrumentGrid');
+            if (grid) {
+                grid.innerHTML = genreInstruments.map((instrument, index) => `
+                    <button class="instrument-pad" onclick="playCompleteInstrument(${index}, '${instrument}')">${instrument}</button>
+                `).join('');
+            }
+        }
+
+        function playCompleteInstrument(index, instrument) {
+            updateStatus(`Playing: ${instrument}`);
+        }
+
+        function toggleCompleteUAD(plugin) {
+            completeUADPlugins[plugin] = (completeUADPlugins[plugin] || 0) + 25;
+            if (completeUADPlugins[plugin] > 100) completeUADPlugins[plugin] = 0;
+            
+            const statusElement = document.getElementById(plugin + 'Status');
+            if (statusElement) statusElement.textContent = completeUADPlugins[plugin] + '%';
+            updateStatus(`${plugin}: ${completeUADPlugins[plugin]}%`);
+        }
+
+        function loadCompleteUAD() {
+            updateStatus('UAD presets loaded');
+        }
+
+        function resetCompleteUAD() {
+            Object.keys(completeUADPlugins).forEach(plugin => {
+                completeUADPlugins[plugin] = 0;
+                const statusElement = document.getElementById(plugin + 'Status');
+                if (statusElement) statusElement.textContent = '0%';
+            });
+            updateStatus('UAD plugins reset');
+        }
+
+        function startCompleteRecording() {
+            updateStatus('Multitrack recording started');
+        }
+
+        function stopCompleteRecording() {
+            updateStatus('Recording stopped');
+        }
+
+        function exportCompleteSession() {
+            updateStatus('Session exported');
+        }
+
+        function getCompleteAISuggestion() {
+            const suggestions = [
+                "Try adding a seventh chord progression in the current key",
+                "Consider layering a bass line with quarter note patterns",
+                "Add some reverb to create spatial depth",
+                "Experiment with polyrhythms for complexity",
+                "Use the Pultec EQ to brighten the high frequencies"
+            ];
+            
+            const suggestion = suggestions[Math.floor(Math.random() * suggestions.length)];
+            document.getElementById('completeAISuggestions').innerHTML = `
+                <div style="color: #00ffff; font-weight: bold;">🤖 AI Suggestion</div>
+                <div style="color: #fff; margin-top: 5px;">${suggestion}</div>
+            `;
+            updateStatus('AI suggestion provided');
+        }
+
+        function analyzeCompleteJam() {
+            document.getElementById('completeAISuggestions').innerHTML = `
+                <div style="color: #00ffff; font-weight: bold;">📊 Jam Analysis</div>
+                <div style="color: #fff; margin-top: 5px;">
+                    Genre: ${completeCurrentGenre}<br>
+                    Active Plugins: ${Object.keys(completeUADPlugins).length}<br>
+                    Tracks: ${completeTracks.length}<br>
+                    Status: ${completeTracks.length < 3 ? 'Add more layers' : 'Ready for mixing'}
+                </div>
+            `;
+            updateStatus('Jam analysis complete');
+        }
+
+        // MASTER STUDIO FUNCTIONS
+        function pulseCreatureMaster() {
+            creatureClicks++;
+            const creature = safeElement('cosmicCreatureMaster');
+            creature.classList.add('creature-pulse');
+            
+            setTimeout(() => {
+                creature.classList.remove('creature-pulse');
+            }, 600);
+
+            if (creatureClicks >= 5) {
+                triggerMasterHypernova();
+                creatureClicks = 0;
+            }
+
+            updateStatus(`Cosmic creature pulsed! (${creatureClicks}/5)`);
+        }
+
+        function triggerMasterHypernova() {
+            safeElement('easterEgg').style.display = 'block';
+            document.body.style.filter = 'brightness(3)';
+            setTimeout(() => {
+                document.body.style.filter = 'brightness(1)';
+            }, 200);
+            
+            updateStatus('🌟 HYPERNOVA ACTIVATED! 🌟');
+        }
+
+        function closeEasterEgg() {
+            safeElement('easterEgg').style.display = 'none';
+            updateStatus('Hypernova complete - continue jamming!');
+        }
+
+        // INITIALIZATION
+        window.addEventListener('load', () => {
+            sessionStartTime = Date.now();
+            setInterval(updateTimer, 1000);
+            updateStatus('🌌 KOZMIC MASTER STUDIO ready! Select a mode to begin.');
+            
+            // Auto-load portable mode for demo
+            setTimeout(() => {
+                switchMode('portable');
+            }, 1000);
+        });
+
+        // KEYBOARD CONTROLS
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey) {
+                switch (e.key) {
+                    case '1':
+                        e.preventDefault();
+                        switchMode('portable');
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        switchMode('live');
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        switchMode('complete');
+                        break;
+                }
+            }
+        });
+
+        // RESPONSIVE HANDLING
+        window.addEventListener('resize', () => {
+            if (portableCanvas && currentStudioMode === 'portable') {
+                const container = portableCanvas.parentElement;
+                if (container) {
+                    portableCanvas.width = container.clientWidth;
+                    portableCanvas.height = container.clientHeight;
+                    
+                    if (portableGL) {
+                        portableGL.viewport(0, 0, portableCanvas.width, portableCanvas.height);
+                    }
+                }
+            }
+        });
+
+        console.log('🌌 KOZMIC MASTER STUDIO v4.0 loaded successfully! 🎸');
+    </script>
+</body>
+</html>
